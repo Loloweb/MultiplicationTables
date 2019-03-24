@@ -6,18 +6,18 @@
 # Algorithm:
 # * Ask for all operations randomly in a selected range, until they are all KNOWN.
 # * If the first answer to an operation is right, do not ask again this operation, it assumed to be KNOWN.
-# * If not, then 2 consecutive answers will be required for this operation. It will then be assumed to be KNOWN and so no longer asked again.
-# * ("Consecutive" for this operation but probably separated by other operations because operations are asked randomly choosed among the remaining UNKNOWN operations.) 
+# * If not, then 2 consecutive answers will be required for this operation. It will then be assumed to be KNOWN and no longer asked again.
+# * ("Consecutive" for this operation but probably separated by other operations because operations are asked randomly chosen among the remaining UNKNOWN operations.) 
 # * Minimalist display so that the pupil only sees the operation. A typed answer is immediately replaced with the display of the right answer.
-# * At the end, display the time/operation score, then the operations that were not answered right at first time. (i.e. had at least 1 wrong answer.)
-# This algorithm will at the end ask again and again the same unknown operations. Repetition leads to memorization.
+# * At the end, display the time/operation score, then the operations that were not answered right at the first time. (i.e. had at least 1 wrong answer.)
+# This algorithm will at the end ask repeatedly the same unknown operations. Repetition leads to memorization.
 
 this_version = '3.3'
 # History:
 # v.3.3 2019-03-24: English version with some small ajustements.
 # v.3.2 2018-08-21: 
-#    * improved input of from_table, to_table and operation's result so that it does not stops when a letter is typed, neagtive values, etc.
-#    * At the end, display the operations which had bad answers, even only one
+#    * improved input of from_table, to_table and operation's result so that it does not stop when a letter is typed, neagtive values, etc.
+#    * At the end, display the operations which had at least one bad answer
 #    * nb_consecutive_right_answers_required variable for the number of required consecutive good answers required if the 1st answer was not good (set to 2 so no change yet)
 
 
@@ -33,7 +33,7 @@ import random
 from random import randint
 import time
 
-# sys.argv is list of arguments passed to the script. sys.argv[0] is by default the path of script
+# sys.argv is a list of arguments passed to the script. sys.argv[0] is by default the path of script
 # and user defined arguments start with index 1
 import sys
 
@@ -54,17 +54,17 @@ color_error = Fore.YELLOW + Style.BRIGHT + Back.CYAN
 color_correct = Fore.GREEN + Style.BRIGHT + Back.CYAN
 
 # Clear the screen 
-# (uses an ANSI sequence, so requires the colorama module on Windows)
+# (uses an ANSI sequence, requires the colorama module on Windows)
 def clear_screen():
 	print('\x1b[2J', end='')
 
-# Clear the current line (where is the cursor) 
-# (uses an ANSI sequence, so requires the colorama module on Windows)
+# Clear the current line (where the cursor is) 
+# (uses an ANSI sequence, requires the colorama module on Windows)
 def clear_line():
 	print('\x1b[2K', end='')
 
-# Move the cursor to the x,y coordinates of the screen 
-# (uses an ANSI sequence, so requires the colorama module on Windows)
+# Move the cursor to the x,y coordinates on the screen 
+# (uses an ANSI sequence, requires the colorama module on Windows)
 def cursor_xy( x, y ):
 	print('\x1b[%d;%dH' % (y, x), end='') 
 
@@ -167,7 +167,7 @@ def final_result_screen():
 
     press_any_key()
     
-    # Display one by one each operation for which a wrong answer was typed, even once
+    # Display one by one each operation for which at least one wrong answer was typed
     for table in range(from_table, (to_table+1)) :
         for operande in range(0, 11):
             if operation_dict[operation_str(table, operande)]['nb_wrong'] > 0:
@@ -203,7 +203,7 @@ else:
 	screen_height = int(sys.argv[2])
 
 
-# To horizontally and vertically center the text to display
+# horizontally and vertically center the text to display
 def x_center_text(text_width):
 	return int( (screen_width - text_width) / 2 )
 x_center_operation = x_center_text(len('10 x 10 = 100'))   # will always be the same x, "slightly left centered"
@@ -260,7 +260,7 @@ while len(operations_not_known) > 0:
             del operations_not_known[index_operations_not_known]      		# This operation is now assumed to be known: remove it from the unknown operation list
             feedback_right_answer( op1, op2, right_result, ':-)' )
         else:
-            # right answer pas not the first time
+            # right answer not the first time
             if operation_dict[operation_str(op1, op2)]['nb_last_right'] == 0:
                 #
                 # right answer, the previous answer was wrong ( operation_dict[operation_str(op1, op2)]['nb_wrong'] > 0 )
@@ -283,7 +283,7 @@ while len(operations_not_known) > 0:
         feedback_wrong_answer( op1, op2, right_result, '<-- SING IT three times! ;-)' )
 
 
-# All operations are known now: end of learning
+# All operations are known: end of learning
 
 # Stopwatch: compute the elapsed time
 elapsed_time = time.time() - start_time
