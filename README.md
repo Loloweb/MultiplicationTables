@@ -6,12 +6,12 @@ It is most useful when the pupil already knows the tables **in order** and has t
 At this stage it is difficult for parents or teachers to question the student in a really random way and without forgetting any operation or ask for the same operation too often. As it must be done agin and again, it can quickly become a chore for them and for the pupil.
 This program should make this learning less painful. I could see that it was rather effective.
 
-The basic idea is not to ask twice an operation when it is correctly answered at the first time, it is assumed to be *known*. If not, then it will take 2 consecutive correct answers for this operation to be considered as *known*. *Consecutive* for this operation but probably separated by other operations because operations are asked randomly choosing among the remaining *unknown* operations.
-This algorithm will at the end ask again and again the same *unknown* operations. Repetition leads to memorization.
+The basic idea is not to ask twice an operation when it is correctly answered at the first time, it is assumed to be *known*. If not, then it will take 2 consecutive correct answers for this operation to be considered as *known*. *Consecutive* for this operation but probably separated by other operations because operations are asked randomly choosed among the remaining *unknown* operations.
+This algorithm will at the end ask repetidely the same *unknown* operations. Repetition leads to memorization.
 
-At the end, the time/operation score is displayed and then, one by one, the operations that were not answered right at first time. (i.e. had at least 1 wrong answer.)
+At the end, the time/operation score is displayed and then, one by one, the operations that were not answered right at first time.
 
-Written an tested only on Windows OS but should be easy to port to Linux, etc. (Remove the colorama module and port the winsound lines)
+Written an tested only on Windows OS but should be easy to port to Linux, etc. (Remove the colorama module and port the winsound lines.)
 
 Important: 
 - This script runs in console mode only. 
