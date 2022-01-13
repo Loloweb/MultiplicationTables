@@ -1,6 +1,7 @@
 # Multiplication Tables
 
 Small program to help pupils learn the multiplication tables.
+Inspired by a lost old GWBASIC program.
 
 It is most useful when the pupil already knows the tables **in order** and has to learn them at random.
 At this stage it is difficult for parents or teachers to question the student in a really random way and without forgetting any operation or ask for the same operation too often. As it must be done agin and again, it can quickly become a chore for them and for the pupil.
