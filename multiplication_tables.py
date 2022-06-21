@@ -1,5 +1,5 @@
-﻿# Learning multiplication tables
-# By ***REMOVED*** and his dad (as an exercice for both of them to start learning Python.)
+# Learning multiplication tables
+# By me and my dad (as an exercice for both of us to start learning Python.)
 # Inspired by a lost old GWBASIC program dad wrote for my brother and I, a long, long time ago.
 # Written an tested only on Windows OS but should be easy to port to Linux, etc. (Remove the colorama module and port the winsound lines)
 #
