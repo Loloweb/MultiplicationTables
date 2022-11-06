@@ -241,7 +241,7 @@ start_time = time.time()
 # While it remains some unknown operations
 while len(operations_not_known) > 0:
     #
-    # randomly choose an operation among those that are not yet known.: op1 et op2
+    # randomly choose an operation among those that are not yet known.: op1 and op2
     index_operations_not_known = randint(0, len(operations_not_known) - 1) 
     op1 = operations_not_known[index_operations_not_known][0]
     op2 = operations_not_known[index_operations_not_known][1]
